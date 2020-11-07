@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![C:\Users\AJ\Desktop\PREWORK_AJR\Modules\Module6Homework\Capture](Images/diagram_filename.png)
+![https://github.com/AndrewJRob/ELK-Project/commit/e597e2a0458d809fe132fa0789a7d13e690b5f48](Images/diagram_filename.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
