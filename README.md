@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![ELK Server](Week13-new.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install-elk.yml file may be used to install only certain pieces of it, such as Filebeat.
 
   - _[ELK Install File](ELK/install-elk.yml)_
 
@@ -31,12 +31,12 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name                 | Function | IP Address | Operating System |
+|----------------------|----------|------------|------------------|
+| Jump-Box-Provisioner | Gateway  | 10.0.0.4   | Linux            |
+| Web-1.1              | Server   | 10.0.0.8   | Linux            |
+| Web-2.1              | Server   | 10.0.0.9   | Linux            |
+| ELK-VM               | Server   | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
