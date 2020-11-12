@@ -100,8 +100,8 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the configuration files of Filebeat and Metrobeat to the /etc/ansible/roles/files directory. You can use the commands:
-  - curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
-  - curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml
+  - `curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`
+  - `curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`
 - Update the seperate Beats configuration files to set the proper hosts and username of your elk machine (IP:PORT) under 'output.elasticsearch' and 'setup.kibana'
 - Run the [Filebeat Playbook](ELK/YAMLFiles/filebeat-playbook.yml) and [Metricbeat Playbook](ELK/YAMLFiles/metricbeat-playbook.yml), and navigate to the 'Elk docker' container to check that the installation worked as expected with the command 'docker ps'.
 
@@ -111,18 +111,18 @@ Which URL do you navigate to in order to check that the ELK server is running?
   - You navigate to the Kibana Portal to ensure that the ELK server is running (ELK Public IP:5601)
 
 Example commands to run and configure the 'Elk container':
-- ssh user@Jumpbox(Private IP)
-- sudo docker container list -a (locates available containers)
-- sudo docker start (name of container)
-- sudo docker attach (name of container)
-- curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
-- curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml
-- cd /etc/ansible/roles/
-- cp /Downloads/filebeat-playbook.yml /etc/ansible/roles/ | cp /Downloads/metricbeat-playbook.yml /etc/ansible/roles/
-- ansible-playbook filebeat-playbook.yml && ansible-playbook metricbeat-playbook.yml
-- ssh user@Elk(Private IP)
-- docker ps
-- Open browser and navigate to (ELK Public IP):5601
-  - if on linux: firefox --new-window (Elk Public IP):5601
+- `ssh user@Jumpbox(Private IP)`
+- `sudo docker container list -a (locates available containers)`
+- `sudo docker start (name of container)`
+- `sudo docker attach (name of container)`
+- `curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`
+- `curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`
+- `cd /etc/ansible/roles/`
+- `cp /Downloads/filebeat-playbook.yml /etc/ansible/roles/ | cp /Downloads/metricbeat-playbook.yml /etc/ansible/roles/`
+- `ansible-playbook filebeat-playbook.yml && ansible-playbook metricbeat-playbook.yml`
+- `ssh user@Elk(Private IP)`
+- `docker ps`
+- `Open browser and navigate to (ELK Public IP):5601`
+  - if on linux: `firefox --new-window (Elk Public IP):5601`
 
 This should open up your Kibana dashboard if all Security Inbound settings and steps have been run properly.
