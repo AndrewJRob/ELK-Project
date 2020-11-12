@@ -92,19 +92,37 @@ We have installed the following Beats on these machines:
 - [Metricbeat](ELK/Ansible/Metricbeat.PNG)
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat is a lightweight shipper for forwarding and centralizing log data. Filebeat monitors log files or locations you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
+- Metricbeat collects metrics from the operating system and from services running on the server. Metricbeat then takes the metrics and statistics that it collects and ships them to the output that you specify.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the configuration files of Filebeat and Metrobeat to the /etc/ansible/roles/files directory. You can use the commands:
+  - curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
+  - curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml
+- Update the seperate Beats configuration files to set the proper hosts and username of your elk machine (IP:PORT) under 'output.elasticsearch' and 'setup.kibana'
+- Run the [Filebeat Playbook](ELK/YAMLFiles/filebeat-playbook.yml) and [Metricbeat Playbook](ELK/YAMLFiles/metricbeat-playbook.yml), and navigate to the 'Elk docker' container to check that the installation worked as expected with the command 'docker ps'.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+Which file is the playbook? Where do you copy it?
+ - The two actual Playbooks are the provided [Filebeat.yml](ELK/YAMLFiles/filebeat-playbook.yml) and [Metricbeat.yml](ELK/YAMLFiles/metricbeat-playbook.yml) files, and I reccomend to copy them to /etc/ansible/roles
+Which URL do you navigate to in order to check that the ELK server is running?
+  - You navigate to the Kibana Portal to ensure that the ELK server is running (ELK Public IP:5601)
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+Example commands to run and configure the 'Elk container':
+- ssh user@Jumpbox(Private IP)
+- sudo docker container list -a (locates available containers)
+- sudo docker start (name of container)
+- sudo docker attach (name of container)
+- curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
+- curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml
+- cd /etc/ansible/roles/
+- cp /Downloads/filebeat-playbook.yml /etc/ansible/roles/ | cp /Downloads/metricbeat-playbook.yml /etc/ansible/roles/
+- ansible-playbook filebeat-playbook.yml && ansible-playbook metricbeat-playbook.yml
+- ssh user@Elk(Private IP)
+- docker ps
+- Open browser and navigate to (ELK Public IP):5601
+  - if on linux: firefox --new-window (Elk Public IP):5601
+
+This should open up your Kibana dashboard if all Security Inbound settings and steps have been run properly.
