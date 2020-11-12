@@ -2,11 +2,11 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![ELK Server](ELK/Diagrams/ELK Network.png)
+![ELK Server](ELK/Diagrams/ELK_Network.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install-elk.yml file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [ELK Install File](ELK Project/YAML Files/install-elk.yml) [Filebeat Install](ELK Project/YAML Files/filebeat-playbook.yml) [Metricbeat Install](ELK Project/YAML Files/metricbeat-playbook.yml)
+  - [ELK Install File](ELK/YAML Files/install-elk.yml) [Filebeat Install](ELK Project/YAML Files/filebeat-playbook.yml) [Metricbeat Install](ELK Project/YAML Files/metricbeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Topologu
