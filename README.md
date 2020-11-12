@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![ELK Server](ELK/Diagrams/ELKNetwork.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install-elk.yml file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install-elk.yml file may be used to install only certain pieces of it, such as Filebeat or Metricbeatr.
 
   - [ELK Install File](ELK/YAMLFiles/install-elk.yml) 
   - [Filebeat Install](ELK/YAMLFiles/filebeat-playbook.yml) 
@@ -47,19 +47,21 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump-Box-Provisioner machine and the ELK-VM can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 - Personal IP Address
+- Jumpbox to ELK-VM via 10.0.0.4
 
 Machines within the network can only be accessed by SSH.
-- The only machine that is able to connect to the Elk-Server (10.1.0.4) is via JumpBox from Private IP (10.0.0.4)
+- The Elk-VM (10.1.0.4) differs because it can be accessed via the Jumpbox (10.0.0.4) or the Personal IP.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name                 | Publicly Accessible | Allowed IP Addresses   |
+|----------------------|---------------------|------------------------|
+| Jump-Box-Provisioner | No                  | Personal IP            |
+| Web-1.1              | No                  | 10.0.0.4               |
+| Web-2.1              | No                  | 10.0.0.4               |
+| ELK-VM               | No                  | 10.0.0.4 & Personal IP |
 
 ### Elk Configuration
 
@@ -68,8 +70,11 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - Allows for Playbooks to configure multiple machines through a single command
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
+- Create a new VM and keep note of the Private and Public IP.
+  - The Private IP will be used for SSHing into the box and the Public IP will used to monitor metrics via Kibana Portal
+- Download and configure the "elk-docker" container
+  - Update the hosts.conf to add your new VM server and Private IP
+  - Then create a new Playbook to download, install, configure your new server, and start the container (Reference: [ELK Install File](ELK/YAMLFiles/install-elk.yml))
 - ...
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
