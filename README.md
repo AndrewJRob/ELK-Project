@@ -33,8 +33,7 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 - _ What does Filebeat watch for? Filebeat watches for log files/locations and collects log events._
 - _ What does Metricbeat record? Metricbeat records metric and statistical data from the opertaing system and from services running on the server._
 
-The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+The configuration details of each machine may be found below:
 
 | Name                 | Function | IP Address | Operating System |
 |----------------------|----------|------------|------------------|
@@ -66,16 +65,19 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because:
-- Ease of use with minimal learning curve
-- Allows for Playbooks to configure multiple machines through a single command
+- Ease of use with minimal learning curve.
+- Allows for Playbooks to configure multiple machines through a single command.
 
 The playbook implements the following tasks:
 - Create a new VM and keep note of the Private and Public IP.
   - The Private IP will be used for SSHing into the box and the Public IP will used to monitor metrics via Kibana Portal
-- Download and configure the "elk-docker" container
-  - Update the hosts.conf to add your new VM server and Private IP
-  - Then create a new Playbook to download, install, configure your new server, and start the container (Reference: [ELK Install File](ELK/YAMLFiles/install-elk.yml))
-- ...
+- Download and configure the 'elk-docker' container.
+  - Update the hosts.conf to add your new VM server and Private IP.
+  - Then create a new Playbook to download, install, configure your new server with ports 5601,9200, and 5044 (Reference: [ELK Install File](ELK/YAMLFiles/install-elk.yml)).
+- Launch and attach the container.
+- SSH into the 'elk-docker' container via your Jumpbox and run the command 'sudo docker ps'
+- Configure your Inbound security rules to allow ports: 5601 and 9200
+- You should now be able to access [Kibana Portal](ELK/Ansible/KibanaWORKS.PNG) via the 'Public IP:5601'
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -83,10 +85,11 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- 10.0.0.8 and 10.0.0.9
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- [Filebeat](ELK/Ansible/Filebeat.PNG)
+- [Metricbeat](ELK/Ansible/Metricbeat.PNG)
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
