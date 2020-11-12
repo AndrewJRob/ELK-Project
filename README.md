@@ -30,8 +30,8 @@ What is the advantage of a jump box?
 - A jump box is a secure computer that all admins first connect to before launching any administrative task or use as an origination point to connect to other servers or untrusted environments
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system traffic.
-- _ What does Filebeat watch for? Filebeat watches for log files/locations and collects log events._
-- _ What does Metricbeat record? Metricbeat records metric and statistical data from the opertaing system and from services running on the server._
+- What does Filebeat watch for? Filebeat watches for log files/locations and collects log events.
+- What does Metricbeat record? Metricbeat records metric and statistical data from the opertaing system and from services running on the server.
 
 The configuration details of each machine may be found below:
 
